@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Casefiles - Useproof</title>
+	<meta name="description" content="Useproof casefile examples for checkout, login, and admin workflows.">
+	<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+	<div class="site-shell">
+		<header class="nav">
+			<div class="nav-inner">
+				<a class="brand" href="/"><img src="/assets/useproof-mark.svg" alt=""><span>Useproof</span></a>
+				<nav class="nav-links" aria-label="Main navigation"><a href="/product.html">Product</a><a href="/examples.html">Casefiles</a><a href="/docs.html">Docs</a><a href="/pricing.html">Pricing</a></nav>
+				<div class="nav-actions"><a class="btn small secondary" href="https://github.com/enka1504/useproof">GitHub</a><a class="btn small primary" href="/docs.html#quickstart">Start local</a></div>
+				<button class="mobile-toggle" type="button" data-menu-toggle aria-label="Open menu"><span></span></button>
+			</div>
+		</header>
+		<main>
+			<section class="page-hero">
+				<p class="eyebrow">Casefiles</p>
+				<h1>Product checks written like operational proof.</h1>
+				<p class="hero-copy">Useproof casefiles are meant to be reviewed by humans and executed by machines. They describe the goal, the agent task, the browser settings, and the exact evidence required for a pass.</p>
+			</section>
+			<section class="section">
+				<div class="grid two">
+					<div class="code-window">
+						<div class="window-bar"><span>checkout.case.yml</span><button class="btn small secondary" type="button" data-copy="#checkout-case">Copy</button></div>
+						<pre id="checkout-case">case: checkout-smoke-test
+objective: Prove that checkout reaches an order confirmation.
+
+agent:
+  task: Log in, add the demo product to cart, and complete checkout with the test card.
+  model: auto
+  max_steps: 25
+
+browser:
+  headless: true
+  viewport:
+    width: 1440
+    height: 1100
+
+verdict:
+  pass_when:
+    - page_contains: Order confirmed
+    - url_matches: /orders/
+    - capture: confirmation_number
+
+receipts:
+  - screenshot
+  - run_tape
+  - browser_trace
+  - dossier</pre>
+					</div>
+					<div class="panel accent-green">
+						<h3>Expected dossier</h3>
+						<p>The dossier should show the objective, final verdict, agent timeline, receipts, and captured confirmation number.</p>
+						<ul class="list"><li>Final URL and page title</li><li>Screenshot at verdict time</li><li>Step timeline with observations</li><li>Machine-readable result JSON</li></ul>
+					</div>
+				</div>
+			</section>
+			<section class="band">
+				<div class="section">
+					<h2>Use cases worth productizing first</h2>
+					<div class="grid three">
+						<article class="panel accent-green"><h3>Login and auth</h3><p>Check sign-in, reset links, SSO routing, dashboard arrival, and account state.</p></article>
+						<article class="panel accent-blue"><h3>Checkout</h3><p>Check product selection, cart state, payment handoff, confirmation screens, and receipts.</p></article>
+						<article class="panel accent-amber"><h3>Admin and support</h3><p>Check internal workflows that are too expensive to keep brittle in a hand-coded E2E suite.</p></article>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<h2>Output contract</h2>
+				<div class="code-window"><div class="window-bar"><span>.useproof/runs</span></div><pre>.useproof/runs/&lt;case&gt;/&lt;run-id&gt;/
+  casefile.yml
+  result.json
+  dossier.md
+  tape.json
+  screenshots/
+  traces/</pre></div>
+			</section>
+		</main>
+		<footer class="footer"><div class="footer-inner"><div><b>Useproof</b><span>The flight recorder for browser agents.</span></div><div><b>Product</b><a href="/product.html">Overview</a><a href="/examples.html">Casefiles</a></div><div><b>Build</b><a href="/docs.html">Docs</a><a href="/pricing.html">Pricing</a></div><div><b>Repo</b><a href="https://github.com/enka1504/useproof">GitHub</a><a href="/README.md">README</a></div></div></footer>
+	</div>
+	<script src="/assets/site.js"></script>
+</body>
+</html>

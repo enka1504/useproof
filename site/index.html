@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Useproof - Proof layer for browser agents</title>
+	<meta name="description" content="Useproof turns browser-agent runs into casefiles, run tapes, verdicts, receipts, and dossiers.">
+	<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+	<div class="site-shell">
+		<header class="nav">
+			<div class="nav-inner">
+				<a class="brand" href="/">
+					<img src="/assets/useproof-mark.svg" alt="">
+					<span>Useproof</span>
+				</a>
+				<nav class="nav-links" aria-label="Main navigation">
+					<a href="/product.html">Product</a>
+					<a href="/examples.html">Casefiles</a>
+					<a href="/docs.html">Docs</a>
+					<a href="/pricing.html">Pricing</a>
+				</nav>
+				<div class="nav-actions">
+					<a class="btn small secondary" href="https://github.com/enka1504/useproof">GitHub</a>
+					<a class="btn small primary" href="/docs.html#quickstart">Start local</a>
+				</div>
+				<button class="mobile-toggle" type="button" data-menu-toggle aria-label="Open menu"><span></span></button>
+			</div>
+		</header>
+
+		<main>
+			<section class="hero">
+				<div class="hero-inner">
+					<div class="kicker">Evidence layer for browser agents</div>
+					<h1 class="hero-title">Ship browser agents people can trust.</h1>
+					<p class="hero-copy">Useproof records agentic browser runs as casefiles, run tapes, verdicts, receipts, and dossiers your team can inspect in CI, incidents, and product reviews.</p>
+					<div class="hero-actions">
+						<a class="btn primary" href="/docs.html#quickstart">Run locally</a>
+						<a class="btn secondary" href="/examples.html">View casefiles</a>
+					</div>
+					<div class="proof-strip" aria-label="Useproof workflow">
+						<div class="proof-node"><b>Casefile</b><span>what should happen</span></div>
+						<div class="proof-node"><b>Agent run</b><span>browser execution</span></div>
+						<div class="proof-node"><b>Run tape</b><span>what happened</span></div>
+						<div class="proof-node"><b>Verdict</b><span>pass or fail</span></div>
+						<div class="proof-node"><b>Dossier</b><span>shareable proof</span></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<p class="eyebrow">The wedge</p>
+				<h2>Tests are brittle. Agents are opaque. Useproof makes runs inspectable.</h2>
+				<p class="section-lede">Browser Use gives the automation engine. Useproof adds the product layer a team needs when a browser agent touches checkout, signup, admin, support, onboarding, or other critical flows.</p>
+				<div class="grid three">
+					<article class="panel accent-green">
+						<h3>Readable casefiles</h3>
+						<p>Write natural-language objectives and explicit pass rules that fit in a pull request.</p>
+					</article>
+					<article class="panel accent-blue">
+						<h3>Durable run tapes</h3>
+						<p>Keep the step-by-step record, page state, screenshots, browser trace, and model configuration.</p>
+					</article>
+					<article class="panel accent-amber">
+						<h3>Shareable verdicts</h3>
+						<p>Produce JSON for CI and Markdown dossiers for humans who need to understand the result.</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="band">
+				<div class="section">
+					<p class="eyebrow">Workflow</p>
+					<h2>From one YAML file to a proof dossier.</h2>
+					<div class="workflow">
+						<div>
+							<div class="tabs" role="tablist" aria-label="Casefile tabs">
+								<button class="tab-button active" type="button" data-tab="checkout">Checkout</button>
+								<button class="tab-button" type="button" data-tab="login">Login</button>
+								<button class="tab-button" type="button" data-tab="admin">Admin</button>
+							</div>
+							<div class="code-window">
+								<div class="window-bar"><span>casefile.yml</span><button class="btn small secondary" type="button" data-copy="#casefile-checkout">Copy</button></div>
+								<pre id="casefile-checkout" class="tab-panel active" data-tab-panel="checkout">case: checkout-smoke-test
+objective: Prove checkout reaches an order confirmation.
+
+agent:
+  task: Log in, add the demo product to cart, and complete checkout.
+  model: auto
+  max_steps: 25
+
+verdict:
+  pass_when:
+    - page_contains: Order confirmed
+    - url_matches: /orders/
+    - capture: confirmation_number
+
+receipts:
+  - screenshot
+  - run_tape
+  - dossier</pre>
+								<pre class="tab-panel" data-tab-panel="login">case: login-regression
+objective: Prove an existing user can sign in.
+
+agent:
+  task: Sign in with the test account and open the dashboard.
+  model: auto
+
+verdict:
+  pass_when:
+    - page_contains: Welcome back
+    - url_matches: /dashboard
+
+receipts:
+  - screenshot
+  - run_tape
+  - browser_trace</pre>
+								<pre class="tab-panel" data-tab-panel="admin">case: admin-user-search
+objective: Prove support can find a customer.
+
+agent:
+  task: Open admin, search for the demo customer, and view the profile.
+
+verdict:
+  pass_when:
+    - page_contains: Customer profile
+    - capture: account_status
+
+receipts:
+  - screenshot
+  - dossier</pre>
+							</div>
+						</div>
+						<div class="panel accent-violet">
+							<h3>Dossier output</h3>
+							<p>A run should leave a compact evidence package with the casefile, browser state, final verdict, screenshots, extracted values, and a human-readable timeline.</p>
+							<ul class="list">
+								<li>CI exit codes for deploy gates</li>
+								<li>Markdown summary for PRs and incidents</li>
+								<li>JSON results for automation and dashboards</li>
+								<li>Receipts stored predictably in `.useproof/runs`</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<p class="eyebrow">Positioning</p>
+				<h2>Not another browser automation homepage.</h2>
+				<div class="comparison">
+					<article class="panel">
+						<h3>Browser Use</h3>
+						<p>Automation infrastructure for web agents: browsers, models, cloud runners, skills, proxies, and APIs.</p>
+						<div class="compare-list">
+							<div class="compare-row"><span class="marker"></span><span>Run agents in browsers</span></div>
+							<div class="compare-row"><span class="marker"></span><span>Scale browser execution</span></div>
+							<div class="compare-row"><span class="marker"></span><span>Integrate with models and tools</span></div>
+						</div>
+					</article>
+					<article class="panel accent-green">
+						<h3>Useproof</h3>
+						<p>The evidence layer for those runs: casefiles, verdicts, run tapes, receipts, and team dossiers.</p>
+						<div class="compare-list">
+							<div class="compare-row"><span class="marker green"></span><span>Prove critical web flows after deploys</span></div>
+							<div class="compare-row"><span class="marker green"></span><span>Explain failures with inspectable receipts</span></div>
+							<div class="compare-row"><span class="marker green"></span><span>Build trust around browser-agent output</span></div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section class="band">
+				<div class="section">
+					<p class="eyebrow">Product path</p>
+					<h2>Open-source core now. Hosted product later.</h2>
+					<div class="grid three">
+						<article class="panel accent-green">
+							<h3>Open source</h3>
+							<p>Casefile runner, verdict engine, receipt writer, Markdown dossiers, CI mode.</p>
+						</article>
+						<article class="panel accent-blue">
+							<h3>Teams</h3>
+							<p>Run history, replay UI, scheduled checks, private receipt storage, Slack alerts.</p>
+						</article>
+						<article class="panel accent-red">
+							<h3>Enterprise</h3>
+							<p>Audit logs, managed runners, SSO, retention rules, production evidence governance.</p>
+						</article>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer">
+			<div class="footer-inner">
+				<div>
+					<b>Useproof</b>
+					<span>The flight recorder for browser agents. Independent repo, upstream history preserved.</span>
+				</div>
+				<div><b>Product</b><a href="/product.html">Overview</a><a href="/examples.html">Casefiles</a><a href="/pricing.html">Pricing</a></div>
+				<div><b>Build</b><a href="/docs.html#quickstart">Quickstart</a><a href="/docs.html#cli">CLI</a><a href="/docs.html#roadmap">Roadmap</a></div>
+				<div><b>Repo</b><a href="https://github.com/enka1504/useproof">GitHub</a><a href="/README.md">README</a><a href="/docs/UPSTREAM_SNAPSHOT.md">Upstream snapshot</a></div>
+			</div>
+		</footer>
+	</div>
+	<script src="/assets/site.js"></script>
+</body>
+</html>

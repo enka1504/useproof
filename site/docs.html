@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Docs - Useproof</title>
+	<meta name="description" content="Useproof documentation and quickstart.">
+	<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+	<div class="site-shell">
+		<header class="nav">
+			<div class="nav-inner">
+				<a class="brand" href="/"><img src="/assets/useproof-mark.svg" alt=""><span>Useproof</span></a>
+				<nav class="nav-links" aria-label="Main navigation"><a href="/product.html">Product</a><a href="/examples.html">Casefiles</a><a href="/docs.html">Docs</a><a href="/pricing.html">Pricing</a></nav>
+				<div class="nav-actions"><a class="btn small secondary" href="https://github.com/enka1504/useproof">GitHub</a><a class="btn small primary" href="#quickstart">Start local</a></div>
+				<button class="mobile-toggle" type="button" data-menu-toggle aria-label="Open menu"><span></span></button>
+			</div>
+		</header>
+		<main>
+			<section class="page-hero">
+				<p class="eyebrow">Docs</p>
+				<h1>Run Useproof locally, then build the proof layer.</h1>
+				<p class="hero-copy">The current CLI exposes the browser engine while the casefile runner, verdict engine, and dossier writer are built into the product surface.</p>
+			</section>
+			<section class="section" id="quickstart">
+				<h2>Quickstart</h2>
+				<div class="code-window">
+					<div class="window-bar"><span>terminal</span><button class="btn small secondary" type="button" data-copy="#quickstart-code">Copy</button></div>
+					<pre id="quickstart-code">cd /root/useproof
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install -e ".[cli]"
+useproof install
+useproof doctor</pre>
+				</div>
+			</section>
+			<section class="band" id="cli">
+				<div class="section">
+					<h2>Current CLI</h2>
+					<p class="section-lede">Use these commands today to control the browser engine that the proof runner will wrap.</p>
+					<div class="grid three">
+						<article class="panel"><h3>Open</h3><p><code>useproof open https://example.com</code></p></article>
+						<article class="panel"><h3>Inspect</h3><p><code>useproof state</code></p></article>
+						<article class="panel"><h3>Capture</h3><p><code>useproof screenshot proof.png</code></p></article>
+					</div>
+					<div class="code-window" style="margin-top:16px"><div class="window-bar"><span>browser session</span></div><pre>useproof open https://example.com
+useproof state
+useproof screenshot proof.png
+useproof close</pre></div>
+				</div>
+			</section>
+			<section class="section" id="roadmap">
+				<h2>Product roadmap</h2>
+				<div class="grid three">
+					<article class="panel accent-green"><h3>Recorder</h3><p>Add <code>useproof run &lt;casefile.yml&gt;</code>, write run folders, capture receipts.</p></article>
+					<article class="panel accent-blue"><h3>Verdicts</h3><p>Add page text checks, URL checks, capture rules, JSON results, and Markdown dossiers.</p></article>
+					<article class="panel accent-amber"><h3>CI mode</h3><p>Add <code>useproof check</code>, non-zero exit codes, GitHub Actions examples, and PR summaries.</p></article>
+				</div>
+			</section>
+			<section class="band">
+				<div class="section">
+					<h2>Source docs</h2>
+					<div class="grid three">
+						<a class="panel" href="/docs/CASEFILE_SPEC.md"><h3>Casefile spec</h3><p>YAML shape, verdict rules, and output contract.</p></a>
+						<a class="panel" href="/docs/ARCHITECTURE.md"><h3>Architecture</h3><p>Recorder, verdict engine, receipt writer, dossier writer.</p></a>
+						<a class="panel" href="/docs/ROADMAP.md"><h3>Roadmap</h3><p>Build plan from identity to hosted product.</p></a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer"><div class="footer-inner"><div><b>Useproof</b><span>The flight recorder for browser agents.</span></div><div><b>Product</b><a href="/product.html">Overview</a><a href="/examples.html">Casefiles</a></div><div><b>Build</b><a href="/docs.html">Docs</a><a href="/pricing.html">Pricing</a></div><div><b>Repo</b><a href="https://github.com/enka1504/useproof">GitHub</a><a href="/README.md">README</a></div></div></footer>
+	</div>
+	<script src="/assets/site.js"></script>
+</body>
+</html>
