@@ -1,0 +1,32 @@
+name: useproof-ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repo-surface:
+    name: repo-surface
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate Python scripts
+        run: python3 -m py_compile scripts/export_upstream_archive.py
+      - name: Validate pyproject
+        run: python3 -c "import tomllib; tomllib.load(open('pyproject.toml', 'rb'))"
+      - name: Check required product docs
+        run: |
+          test -f README.md
+          test -f docs/WORKFLOW_SPEC.md
+          test -f docs/ARCHITECTURE.md
+          test -f docs/BRAND.md
+          test -f docs/UPSTREAM_SNAPSHOT.md

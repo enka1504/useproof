@@ -1,85 +1,78 @@
 # Product Direction
 
-## Name
+## Product Promise
 
-Useproof
+Useproof helps teams prove that important browser workflows still work.
 
-## Tagline
+It does that with agentic execution plus inspectable evidence: assertions,
+screenshots, traces, run logs, and replay-ready reports.
 
-AI browser agents for proving real workflows work.
+## Category
 
-## Positioning
+Agentic workflow QA and monitoring.
 
-Useproof is an agent-powered workflow testing and monitoring tool. It uses
-browser agents to run real user journeys, then saves proof artifacts such as
-screenshots, traces, agent steps, assertions, and replay data.
+Useproof is not a generic browser agent, chatbot, scraper, or automation
+marketplace. It is the evidence layer for browser agents.
 
-It is not a general chatbot, agent builder, or simple browser automation library.
-It is a product layer for answering one question:
+## Primary Users
 
-> Did this web workflow actually work, and can we prove it?
+- Developers who need PR checks for critical web flows
+- QA teams who need resilient end-to-end coverage
+- SaaS founders who need production smoke tests without a large QA team
+- Agent builders who need regression checks for browser-using agents
 
-## Target Users
+## Wedge
 
-- Developers shipping web applications
-- QA engineers who need flexible end-to-end coverage
-- SaaS founders who need smoke tests without a large QA team
-- Product and growth teams monitoring critical funnels
-- Agent builders who need reliability checks for browser-using agents
+Traditional end-to-end tests are repeatable but brittle. Browser agents are
+flexible but hard to trust.
 
-## Core Use Cases
+Useproof sits between them:
 
-- Pull-request smoke tests for login, signup, checkout, onboarding, and admin
-  workflows
-- Scheduled monitors for production user journeys
-- Browser-agent regression tests after prompt, model, or app changes
-- Replayable bug reports with browser state and agent reasoning steps
-- Competitive or compliance checks where a page state must be verified over time
+- natural-language workflow execution
+- explicit machine-checkable assertions
+- durable proof artifacts
+- local and CI execution first
+- scheduled monitoring later
 
-## Product Wedge
+## First Use Case
 
-Most browser automation tools require brittle selectors. Most AI agents can act
-flexibly but are hard to trust.
+The first product bet is a checkout, signup, login, onboarding, or admin flow
+that a team wants to verify after every deploy.
 
-Useproof combines the two:
+The output is not just pass or fail. It is a proof bundle:
 
-- flexible natural-language workflow execution
-- explicit assertions
-- saved proof artifacts
-- repeatable local and CI runs
-- product-grade history and monitoring later
+- workflow spec
+- model and browser configuration
+- agent step timeline
+- screenshots
+- assertion result
+- final report
 
 ## Open-Source Core
 
-The open-source repo should focus on:
+- Workflow spec format
+- Local runner
+- Assertion engine
+- Artifact writer
+- Markdown and JSON reports
+- CI-friendly exit codes
+- Upstream browser automation engine
 
-- local workflow runner
-- YAML or TOML workflow specs
-- assertion primitives
-- artifact capture
-- deterministic-ish retry policy
-- CI output
-- provider-neutral LLM configuration
+## Hosted Product Path
 
-## Product Path
-
-The hosted product can add:
-
-- managed browser runners
-- scheduled monitoring
-- team dashboards
-- history, replay, and flakiness analytics
+- Managed browser runners
+- Scheduled production monitors
+- Team run history
+- Replay UI
+- Flakiness analytics
 - Slack and email alerts
-- auth profile storage
-- parallel execution
-- audit logs
-- private workflow and artifact storage
+- Private artifact storage
+- Audit logs
 
-## Non-Goals
+## Product Rule
 
-- Replace Playwright or Cypress for every deterministic test
-- Become a general-purpose agent marketplace
-- Hide upstream attribution
-- Rebrand every internal package before the product direction is validated
+Every feature should improve one of three things:
 
-The early goal is to prove the Useproof workflow and artifact model first.
+- Can the workflow run?
+- Can the result be trusted?
+- Can the proof be shared?

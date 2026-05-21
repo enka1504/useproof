@@ -1,0 +1,46 @@
+name: Bug report
+description: Report a Useproof product or workflow issue.
+labels: ["bug", "needs-triage"]
+title: "Bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a Useproof issue. Please focus on the workflow, expected proof, and actual proof.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Use `git rev-parse --short HEAD` or the package version.
+      placeholder: "e.g. 0.1.0 or 3eec3db"
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow or task
+      description: Paste the workflow YAML or the natural-language task.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected proof
+      description: What should the run prove or capture?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: What happened instead? Include logs, screenshots, or artifact paths if possible.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "OS, Python version, browser mode, model provider"
+    validations:
+      required: false

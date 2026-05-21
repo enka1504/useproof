@@ -1,11 +1,8 @@
-blank_issues_enabled: false  # Set to true if you want to allow blank issues
+blank_issues_enabled: false
 contact_links:
-  - name: 🔢 Quickstart Guide
-    url: https://docs.browser-use.com/quickstart
-    about: Most common issues can be resolved by following our quickstart guide
-  - name: 💬 Questions and Help
-    url: https://link.browser-use.com/discord
-    about: Please ask questions in our Discord community
-  - name: 📖 Documentation
-    url: https://docs.browser-use.com
-    about: Check our documentation for answers first
+  - name: Useproof documentation
+    url: https://github.com/enka1504/useproof/tree/main/docs
+    about: Read the product direction, workflow spec, architecture, and roadmap.
+  - name: Upstream browser-use project
+    url: https://github.com/browser-use/browser-use
+    about: Use upstream for issues that are only about the imported browser automation engine.

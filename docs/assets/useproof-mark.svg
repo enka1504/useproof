@@ -1,0 +1,12 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Useproof mark</title>
+  <desc id="desc">A browser window with a check path and proof dot.</desc>
+  <rect width="160" height="160" rx="36" fill="#12211F"/>
+  <rect x="30" y="40" width="100" height="78" rx="14" fill="#F6F8F7"/>
+  <rect x="30" y="40" width="100" height="20" rx="14" fill="#0EAD93"/>
+  <circle cx="44" cy="50" r="4" fill="#12211F"/>
+  <circle cx="58" cy="50" r="4" fill="#12211F"/>
+  <circle cx="72" cy="50" r="4" fill="#12211F"/>
+  <path d="M52 86L70 101L108 70" stroke="#12211F" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="110" cy="104" r="11" fill="#F2B84B" stroke="#12211F" stroke-width="6"/>
+</svg>

@@ -1,58 +1,54 @@
 # Roadmap
 
-## Milestone 0: Product Baseline
+## 0. Product Identity
 
-- Preserve upstream browser-use history
-- Add Useproof README, product direction, roadmap, and attribution
-- Keep upstream sync path available through the `upstream` remote
-- Define the first workflow spec shape
-- Preserve upstream issue and pull-request metadata as a file archive
+- Preserve upstream history, license, and attribution
+- Replace the public repo surface with Useproof positioning
+- Add workflow spec, architecture, brand, and contribution docs
+- Preserve upstream issue and PR context as an archive
 
-## Milestone 1: Local Proof Runner
+## 1. Proof Runner
 
-- Add `useproof run <workflow-file>`
-- Support a minimal YAML workflow format
-- Run one browser-agent task from a workflow file
-- Save run output under `.useproof/runs/`
-- Capture screenshots, final URL, agent steps, and pass/fail status
+- Add `useproof run <workflow.yml>`
+- Parse the first workflow spec
+- Run one browser-agent task
+- Write `.useproof/runs/<run-id>/`
+- Capture screenshots, agent steps, config, and final result
 
-## Milestone 2: Assertions
+## 2. Assertions
 
-- Add assertion types:
-  - page contains text
-  - URL matches pattern
-  - element or visible text exists
-  - agent captured value exists
-- Produce machine-readable JSON reports
-- Produce human-readable Markdown reports
+- Add `page_contains`
+- Add `url_matches`
+- Add `capture`
+- Add timeout and retry controls
+- Emit JSON and Markdown reports
 
-## Milestone 3: CI Mode
+## 3. CI Mode
 
-- Add `useproof run --ci`
-- Exit non-zero on failed proof runs
-- Add GitHub Actions example
-- Store artifacts in predictable paths
-- Add retry and timeout controls
+- Add `useproof check <workflow.yml>`
+- Exit non-zero on failed assertions
+- Add a GitHub Actions example
+- Upload proof artifacts predictably
+- Make PR output short enough to scan
 
-## Milestone 4: Replay And Debugging
+## 4. Replay
 
-- Add browser trace capture
-- Add run timeline view
-- Add failure summary with last screenshot and last agent action
-- Add prompt/model/config metadata to each run
+- Save trace metadata
+- Add a run timeline
+- Show last known page state on failure
+- Preserve model, prompt, and browser settings for each run
 
-## Milestone 5: Monitoring Product
+## 5. Monitoring
 
-- Add scheduled runs
-- Add Slack/email alert adapters
-- Add hosted runner design
-- Add team dashboard design
-- Add pricing and packaging notes after open-source usage is validated
+- Add scheduled local runs
+- Add Slack and email alert adapters
+- Design hosted runner API
+- Design team dashboard and run history
 
-## First Product Bet
+## 6. Productization
 
-The first narrow product promise should be:
-
-> Useproof runs your most important web workflow and gives you proof it worked.
-
-Everything else should serve that promise.
+- Package the CLI as `useproof`
+- Publish docs
+- Add examples for login, checkout, onboarding, and admin flows
+- Define the hosted product boundary
+- Decide which upstream internals should be renamed only after the proof model is validated

@@ -1,8 +1,10 @@
-# Contributing to browser-use
+# Contributing to Useproof
 
-We love contributions! Please read through these links to get started:
+Thanks for helping shape Useproof.
 
- - 🔢 [Contribution Guidelines](https://docs.browser-use.com/development/contribution-guide)
- - 👾 [Local Development Setup Guide](https://docs.browser-use.com/development/local-setup)
- - 🏷️ [Issues Tagged: `#help-wanted`](https://github.com/browser-use/browser-use/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22)
- - 🔌 [Integration Example Guidelines](../examples/integrations/README.md)
+Start with the repo-level guide:
+
+- [Contributing](../CONTRIBUTING.md)
+- [Product direction](../docs/PRODUCT_DIRECTION.md)
+- [Workflow spec](../docs/WORKFLOW_SPEC.md)
+- [Roadmap](../docs/ROADMAP.md)

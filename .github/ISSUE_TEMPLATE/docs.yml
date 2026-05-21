@@ -1,0 +1,25 @@
+name: Documentation issue
+description: Improve Useproof docs or repo presentation.
+labels: ["documentation", "needs-triage"]
+title: "Docs: "
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      placeholder: "docs/WORKFLOW_SPEC.md"
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue
+      description: What is missing, unclear, outdated, or wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested change
+    validations:
+      required: false

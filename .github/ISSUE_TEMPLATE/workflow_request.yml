@@ -1,0 +1,38 @@
+name: Workflow proof request
+description: Propose a workflow Useproof should be able to prove.
+labels: ["workflow", "product"]
+title: "Workflow: "
+body:
+  - type: input
+    id: workflow_name
+    attributes:
+      label: Workflow name
+      placeholder: "checkout-smoke-test"
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What real user journey should be proved?
+    validations:
+      required: true
+  - type: textarea
+    id: assertions
+    attributes:
+      label: Assertions
+      description: What should be true at the end?
+      placeholder: |
+        - page contains "Order confirmed"
+        - final URL contains "/orders/"
+        - confirmation number is captured
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Needed artifacts
+      description: What evidence would make the result trustworthy?
+      placeholder: "screenshot, browser trace, step log, markdown report"
+    validations:
+      required: false

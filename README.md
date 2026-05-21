@@ -1,75 +1,103 @@
-# Useproof
+<p align="center">
+  <img src="docs/assets/useproof-mark.svg" alt="Useproof logo" width="104">
+</p>
 
-AI browser agents for proving real workflows work.
+<h1 align="center">Useproof</h1>
 
-Useproof is an open-source product project built from
-[`browser-use`](https://github.com/browser-use/browser-use). Its direction is
-different from general browser automation: Useproof focuses on repeatable proof
-runs for web workflows, with artifacts that developers, QA teams, and product
-teams can trust.
+<p align="center">
+  <strong>Agentic browser checks with evidence you can inspect.</strong>
+</p>
 
-The current codebase keeps the upstream `browser_use` Python package while the
-product layer is developed around it.
+<p align="center">
+  Describe a web workflow, run it with a browser agent, assert the outcome, and keep the proof.
+</p>
 
-## Product Direction
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-12211F"></a>
+  <a href="pyproject.toml"><img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-0EAD93"></a>
+  <a href="docs/ROADMAP.md"><img alt="Status: product shaping" src="https://img.shields.io/badge/status-product%20shaping-F2B84B"></a>
+</p>
 
-Useproof turns plain-English browser tasks into reusable checks:
+## What Useproof Is
+
+Useproof is an open-source product project for turning AI browser agents into
+repeatable workflow checks.
+
+The product promise is narrow on purpose:
+
+> If an agent says a workflow worked, Useproof should show the proof.
+
+Useproof starts from the browser automation engine of
+[`browser-use`](https://github.com/browser-use/browser-use), then adds a product
+layer for workflow specs, assertions, artifacts, CI reports, and scheduled
+monitoring.
+
+## Proof Workflow
+
+```text
+Describe -> Run -> Assert -> Capture -> Replay -> Monitor
+```
 
 ```yaml
 name: checkout-smoke-test
-task: Log in, add the demo product to cart, and complete checkout with test card.
-expect:
-  - The order confirmation page is visible.
-  - The confirmation number is captured.
+goal: Prove that the demo checkout still works.
+
+agent:
+  task: Log in, add the demo product to cart, and complete checkout with the test card.
+  model: auto
+
+assert:
+  - page_contains: Order confirmed
+  - url_matches: /orders/
+  - capture: confirmation_number
+
 artifacts:
   - screenshot
-  - browser_trace
   - agent_steps
+  - browser_trace
+  - markdown_report
 ```
 
-The product goal is simple:
-
-> If an AI agent says a workflow works, Useproof should be able to show the proof.
-
-## What This Becomes
-
-- A local CLI for running agent-powered browser workflow checks
-- A reusable workflow spec format for tests and monitors
-- Screenshots, traces, logs, and replayable proof artifacts
-- GitHub Actions integration for pull-request checks
-- Scheduled production monitors with Slack or email alerts
-- A hosted team dashboard for history, flakiness, cost, and replay
-
-## Why Useproof
-
-AI browser agents are powerful, but product teams need more than "the agent ran."
-They need evidence:
+The output should answer the questions a team actually asks after a deploy:
 
 - What did the agent do?
 - What did it see?
-- Did the workflow actually succeed?
-- Can the result be replayed or audited?
-- Did this break after a deploy?
+- Which assertion passed or failed?
+- What screenshot, trace, or replay proves it?
+- Can this run again in CI or on a schedule?
 
-Useproof is the product layer for that evidence.
+## Product Surface
 
-## Upstream
+- `useproof run`: local workflow proof runner
+- `useproof check`: CI mode with deterministic exit codes
+- `.useproof/runs/`: run artifacts, reports, screenshots, and traces
+- `docs/upstream-archive/`: preserved upstream issue and PR context
+- Hosted product path: managed browser runners, scheduled monitors, team history, replay, and alerts
 
-Useproof starts from `browser-use/browser-use`, imported as an independent
-repository rather than created through GitHub's fork button. The upstream commit
-history is preserved locally so future changes can be audited and upstream can
-still be synced.
+The current implementation still exposes the upstream `browser_use` Python
+package while Useproof-specific product surfaces are introduced.
 
-See:
+## Repository Map
 
-- [Upstream snapshot](docs/UPSTREAM_SNAPSHOT.md)
-- [Product direction](docs/PRODUCT_DIRECTION.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Original browser-use README](docs/UPSTREAM_BROWSER_USE_README.md)
-- [Attribution notice](NOTICE.md)
+- [docs/README.md](docs/README.md): documentation index
+- [docs/WORKFLOW_SPEC.md](docs/WORKFLOW_SPEC.md): proposed proof workflow format
+- [docs/EXAMPLES.md](docs/EXAMPLES.md): example proof workflows
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): target product architecture
+- [docs/BRAND.md](docs/BRAND.md): product identity and design system
+- [docs/ROADMAP.md](docs/ROADMAP.md): build plan
+- [docs/UPSTREAM_SNAPSHOT.md](docs/UPSTREAM_SNAPSHOT.md): imported upstream baseline
+- [NOTICE.md](NOTICE.md): attribution and license notice
 
-## Status
+## Development Status
 
-This repository is in product-shaping mode. The first milestone is to keep the
-browser-use engine working while adding a Useproof workflow runner, proof
-artifacts, and CI-friendly reporting.
+Useproof is in product-shaping mode. The foundation is imported and attributed;
+the next work is to build the Useproof runner, workflow spec, artifact model,
+and CI reporting around the existing browser agent engine.
+
+## Upstream And License
+
+Useproof is an independent repository, not a GitHub fork. It preserves upstream
+history and attribution from `browser-use/browser-use` under the MIT License.
+
+The original upstream README is preserved at
+[docs/UPSTREAM_BROWSER_USE_README.md](docs/UPSTREAM_BROWSER_USE_README.md).

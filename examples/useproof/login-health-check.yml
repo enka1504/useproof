@@ -1,0 +1,26 @@
+name: login-health-check
+goal: Prove that a test user can log in and see the dashboard.
+
+agent:
+  task: >
+    Open the staging app, log in with the test account, and verify that the
+    dashboard is visible.
+  model: auto
+  max_steps: 18
+
+browser:
+  headless: true
+
+assert:
+  - page_contains: Dashboard
+  - url_matches: /dashboard
+
+artifacts:
+  - screenshot
+  - agent_steps
+  - markdown_report
+
+retry:
+  attempts: 1
+  on:
+    - navigation_timeout

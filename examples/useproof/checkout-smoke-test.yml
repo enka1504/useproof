@@ -1,0 +1,32 @@
+name: checkout-smoke-test
+goal: Prove that the demo checkout reaches an order confirmation page.
+
+agent:
+  task: >
+    Open the demo store, add the sample product to cart, complete checkout with
+    the test card, and stop on the order confirmation page.
+  model: auto
+  max_steps: 25
+
+browser:
+  headless: true
+  viewport:
+    width: 1440
+    height: 1100
+
+assert:
+  - page_contains: Order confirmed
+  - url_matches: /orders/
+  - capture: confirmation_number
+
+artifacts:
+  - screenshot
+  - agent_steps
+  - browser_trace
+  - markdown_report
+
+retry:
+  attempts: 1
+  on:
+    - navigation_timeout
+    - model_rate_limit

@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest a Useproof product capability.
+labels: ["enhancement", "needs-triage"]
+title: "Feature: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What workflow, assertion, artifact, or report problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should Useproof do?
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Proof output
+      description: What evidence should the feature produce or improve?
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Workflow spec
+        - Runner
+        - Assertions
+        - Artifacts
+        - Reports
+        - CI
+        - Monitoring
+        - Documentation
+    validations:
+      required: true
