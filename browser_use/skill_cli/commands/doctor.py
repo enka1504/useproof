@@ -40,20 +40,19 @@ async def handle() -> dict[str, Any]:
 
 
 def _check_package() -> dict[str, Any]:
-	"""Check if browser-use is installed."""
+	"""Check if useproof is installed."""
 	try:
-		import browser_use
+		from importlib.metadata import version
 
-		version = getattr(browser_use, '__version__', 'unknown')
 		return {
 			'status': 'ok',
-			'message': f'browser-use {version}',
+			'message': f'useproof {version("useproof")}',
 		}
-	except ImportError:
+	except Exception:
 		return {
 			'status': 'error',
-			'message': 'browser-use not installed',
-			'fix': 'pip install browser-use',
+			'message': 'useproof not installed',
+			'fix': 'pip install -e ".[cli]"',
 		}
 
 
@@ -99,7 +98,7 @@ async def _check_network() -> dict[str, Any]:
 
 
 def _check_cloudflared() -> dict[str, Any]:
-	"""Check if cloudflared is available (needed for browser-use tunnel)."""
+	"""Check if cloudflared is available (needed for useproof tunnel)."""
 	from browser_use.skill_cli.tunnel import get_tunnel_manager
 
 	status = get_tunnel_manager().get_status()
@@ -110,13 +109,13 @@ def _check_cloudflared() -> dict[str, Any]:
 		}
 	return {
 		'status': 'missing',
-		'message': 'cloudflared not installed (needed for browser-use tunnel)',
+		'message': 'cloudflared not installed (needed for useproof tunnel)',
 		'fix': 'Install cloudflared: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/',
 	}
 
 
 def _check_profile_use() -> dict[str, Any]:
-	"""Check if profile-use binary is available (needed for browser-use profile)."""
+	"""Check if profile-use binary is available (needed for useproof profile)."""
 	from browser_use.skill_cli.profile_use import get_profile_use_binary
 
 	binary = get_profile_use_binary()
@@ -127,8 +126,8 @@ def _check_profile_use() -> dict[str, Any]:
 		}
 	return {
 		'status': 'missing',
-		'message': 'profile-use not installed (needed for browser-use profile)',
-		'fix': 'browser-use profile update',
+		'message': 'profile-use not installed (needed for useproof profile)',
+		'fix': 'useproof profile update',
 	}
 
 

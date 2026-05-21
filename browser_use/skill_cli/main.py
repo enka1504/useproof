@@ -53,12 +53,33 @@ def _get_subcommand() -> str | None:
 # Handle 'install' command - installs Chromium browser + system dependencies
 if _get_subcommand() == 'install':
 	import platform
+	import shutil
 
 	print('📦 Installing Chromium browser + system dependencies...')
 	print('⏳ This may take a few minutes...\n')
 
-	# Build command - only use --with-deps on Linux (it fails on Windows/macOS)
-	cmd = ['uvx', 'playwright', 'install', 'chromium']
+	def _playwright_available() -> bool:
+		check = subprocess.run([sys.executable, '-m', 'playwright', '--version'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+		return check.returncode == 0
+
+	if not _playwright_available():
+		print('🔧 Playwright Python package is not installed in this environment.')
+		print('📦 Installing Playwright with pip...\n')
+		pip_result = subprocess.run([sys.executable, '-m', 'pip', 'install', 'playwright'])
+		if pip_result.returncode != 0:
+			print('\n❌ Failed to install Playwright. Try: python -m pip install playwright')
+			sys.exit(1)
+
+	# Build command - only use --with-deps on Linux (it fails on Windows/macOS).
+	if _playwright_available():
+		cmd = [sys.executable, '-m', 'playwright', 'install', 'chromium']
+	elif shutil.which('uvx'):
+		cmd = ['uvx', 'playwright', 'install', 'chromium']
+	else:
+		print('\n❌ Playwright is not available and uvx was not found.')
+		print('Try: python -m pip install playwright')
+		sys.exit(1)
+
 	if platform.system() == 'Linux':
 		cmd.append('--with-deps')
 	cmd.append('--no-shell')
@@ -67,7 +88,7 @@ if _get_subcommand() == 'install':
 
 	if result.returncode == 0:
 		print('\n✅ Installation complete!')
-		print('🚀 Ready to use! Run: uvx browser-use')
+		print('🚀 Ready to use! Run: useproof doctor')
 	else:
 		print('\n❌ Installation failed')
 		sys.exit(1)
@@ -607,26 +628,30 @@ def send_command(action: str, params: dict, *, session: str = 'default', agent_i
 
 def build_parser() -> argparse.ArgumentParser:
 	"""Build argument parser with all commands."""
+	prog_name = Path(sys.argv[0]).name or 'useproof'
+	is_useproof = prog_name in {'useproof', 'proof'}
+	display_cmd = 'useproof' if is_useproof else 'browser-use'
+
 	# Build epilog
 	epilog_parts = []
 
-	epilog_parts.append("""Cloud API:
-  browser-use cloud login <api-key>             # Save API key
-  browser-use cloud connect                     # Provision cloud browser
-  browser-use cloud v2 GET /browsers            # List browsers
-  browser-use cloud v2 POST /tasks '{...}'      # Create task
-  browser-use cloud v2 poll <task-id>           # Poll task until done
-  browser-use cloud v2 --help                   # Show API endpoints""")
+	epilog_parts.append(f"""Cloud API:
+  {display_cmd} cloud login <api-key>             # Save API key
+  {display_cmd} cloud connect                     # Provision cloud browser
+  {display_cmd} cloud v2 GET /browsers            # List browsers
+  {display_cmd} cloud v2 POST /tasks '{{...}}'      # Create task
+  {display_cmd} cloud v2 poll <task-id>           # Poll task until done
+  {display_cmd} cloud v2 --help                   # Show API endpoints""")
 
-	epilog_parts.append("""
+	epilog_parts.append(f"""
 Setup:
-  browser-use open https://example.com          # Navigate to URL
-  browser-use install                           # Install Chromium browser
-  browser-use init                              # Generate template file""")
+  {display_cmd} open https://example.com          # Navigate to URL
+  {display_cmd} install                           # Install Chromium browser
+  {display_cmd} init                              # Generate template file""")
 
 	parser = argparse.ArgumentParser(
-		prog='browser-use',
-		description='Browser automation CLI for browser-use',
+		prog=display_cmd,
+		description='Useproof browser-agent CLI' if is_useproof else 'Browser automation CLI for browser-use',
 		formatter_class=argparse.RawDescriptionHelpFormatter,
 		epilog='\n'.join(epilog_parts),
 	)
@@ -649,7 +674,7 @@ Setup:
 		'--connect',
 		action='store_true',
 		default=False,
-		help='(Deprecated) Use "browser-use connect" instead',
+		help=f'(Deprecated) Use "{display_cmd} connect" instead',
 	)
 	parser.add_argument('--session', default=None, help='Session name (default: "default")')
 	parser.add_argument('--json', action='store_true', help='Output as JSON')
@@ -668,18 +693,18 @@ Setup:
 	# register
 
 	# init
-	p = subparsers.add_parser('init', help='Generate browser-use template file')
+	p = subparsers.add_parser('init', help='Generate Useproof starter template file')
 	p.add_argument('--template', '-t', help='Template name (interactive if not specified)')
 	p.add_argument('--output', '-o', help='Output file path')
 	p.add_argument('--force', '-f', action='store_true', help='Overwrite existing files')
 	p.add_argument('--list', '-l', action='store_true', help='List available templates')
 
 	# setup
-	p = subparsers.add_parser('setup', help='Configure browser-use for first-time use')
+	p = subparsers.add_parser('setup', help='Configure Useproof for first-time use')
 	p.add_argument('--yes', '-y', action='store_true', help='Skip interactive prompts')
 
 	# doctor
-	subparsers.add_parser('doctor', help='Check browser-use installation and dependencies')
+	subparsers.add_parser('doctor', help='Check Useproof installation and dependencies')
 
 	# connect (to local Chrome)
 	subparsers.add_parser('connect', help='Connect to running Chrome via CDP')
@@ -915,7 +940,7 @@ Setup:
 	# Cloud API (Generic REST passthrough)
 	# -------------------------------------------------------------------------
 
-	cloud_p = subparsers.add_parser('cloud', help='Browser-Use Cloud API')
+	cloud_p = subparsers.add_parser('cloud', help='Cloud browser API')
 	cloud_p.add_argument('cloud_args', nargs=argparse.REMAINDER, help='cloud subcommand args')
 
 	# -------------------------------------------------------------------------

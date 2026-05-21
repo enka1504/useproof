@@ -7,7 +7,7 @@ getter functions all reference CONFIG_KEYS.
 import json
 from pathlib import Path
 
-CLI_DOCS_URL = 'https://docs.browser-use.com/open-source/browser-use-cli'
+CLI_DOCS_URL = 'https://github.com/enka1504/useproof/tree/main/docs'
 
 CONFIG_KEYS: dict = {
 	'api_key': {

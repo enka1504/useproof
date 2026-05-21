@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import os
 import shutil
+import sys
 import tempfile
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, ClassVar
@@ -362,7 +363,7 @@ class LocalBrowserWatchdog(BaseWatchdog):
 		import platform
 
 		# Build command - only use --with-deps on Linux (it fails on Windows/macOS)
-		cmd = ['uvx', 'playwright', 'install', 'chromium']
+		cmd = [sys.executable, '-m', 'playwright', 'install', 'chromium']
 		if platform.system() == 'Linux':
 			cmd.append('--with-deps')
 
@@ -380,7 +381,7 @@ class LocalBrowserWatchdog(BaseWatchdog):
 			if browser_path:
 				return browser_path
 			self.logger.error(f'[LocalBrowserWatchdog] ❌ Playwright local browser installation error: \n{stdout}\n{stderr}')
-			raise RuntimeError('No local browser path found after: uvx playwright install chromium')
+			raise RuntimeError('No local browser path found after: python -m playwright install chromium')
 		except TimeoutError:
 			# Kill the subprocess if it times out
 			process.kill()

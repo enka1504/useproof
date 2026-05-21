@@ -82,6 +82,31 @@ Every run should leave a dossier that answers:
 The current implementation still exposes the upstream `browser_use` Python
 package while Useproof-specific casefile surfaces are introduced.
 
+## Run Locally
+
+```bash
+cd useproof
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install -e ".[cli]"
+useproof install
+useproof doctor
+```
+
+Try the current browser-agent CLI:
+
+```bash
+useproof open https://example.com
+useproof state
+useproof screenshot proof.png
+useproof close
+```
+
+The `run` and `check` casefile commands are the next product layer on the
+roadmap. Until then, `useproof` exposes the browser control engine that the
+casefile runner will build on.
+
 ## Repository Map
 
 - [docs/README.md](docs/README.md): documentation index

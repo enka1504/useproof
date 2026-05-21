@@ -113,6 +113,11 @@ def _is_chrome_profile_lock_error(error: BaseException) -> bool:
 	return False
 
 
+def _running_as_root() -> bool:
+	"""Return True when Chromium needs root-safe launch flags on POSIX."""
+	return hasattr(os, 'geteuid') and os.geteuid() == 0
+
+
 CHROME_HEADLESS_ARGS = [
 	'--headless=new',
 ]
@@ -910,7 +915,7 @@ class BrowserProfile(BrowserConnectArgs, BrowserLaunchPersistentContextArgs, Bro
 			*self.args,
 			f'--user-data-dir={self.user_data_dir}',
 			f'--profile-directory={self.profile_directory}',
-			*(CHROME_DOCKER_ARGS if (CONFIG.IN_DOCKER or not self.chromium_sandbox) else []),
+			*(CHROME_DOCKER_ARGS if (CONFIG.IN_DOCKER or _running_as_root() or not self.chromium_sandbox) else []),
 			*(CHROME_HEADLESS_ARGS if self.headless else []),
 			*(CHROME_DISABLE_SECURITY_ARGS if self.disable_security else []),
 			*(CHROME_DETERMINISTIC_RENDERING_ARGS if self.deterministic_rendering else []),
