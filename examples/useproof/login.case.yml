@@ -1,5 +1,5 @@
-name: login-health-check
-goal: Prove that a test user can log in and see the dashboard.
+case: login-health-check
+objective: Prove that a test user can log in and see the dashboard.
 
 agent:
   task: >
@@ -11,14 +11,15 @@ agent:
 browser:
   headless: true
 
-assert:
-  - page_contains: Dashboard
-  - url_matches: /dashboard
+verdict:
+  pass_when:
+    - page_contains: Dashboard
+    - url_matches: /dashboard
 
-artifacts:
+receipts:
   - screenshot
-  - agent_steps
-  - markdown_report
+  - run_tape
+  - dossier
 
 retry:
   attempts: 1

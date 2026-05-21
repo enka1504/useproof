@@ -1,13 +1,13 @@
-# Workflow Spec
+# Casefile Spec
 
-Useproof workflows should be easy to read in a pull request and precise enough
-to run in CI.
+Useproof casefiles should be easy to read in a pull request and precise enough
+to create a CI verdict.
 
 ## Example
 
 ```yaml
-name: checkout-smoke-test
-goal: Prove the demo checkout works after deploy.
+case: checkout-smoke-test
+objective: Prove the demo checkout works after deploy.
 
 agent:
   task: Log in, add the demo product to cart, and complete checkout with the test card.
@@ -20,16 +20,17 @@ browser:
     width: 1440
     height: 1100
 
-assert:
-  - page_contains: Order confirmed
-  - url_matches: /orders/
-  - capture: confirmation_number
+verdict:
+  pass_when:
+    - page_contains: Order confirmed
+    - url_matches: /orders/
+    - capture: confirmation_number
 
-artifacts:
+receipts:
   - screenshot
-  - agent_steps
+  - run_tape
   - browser_trace
-  - markdown_report
+  - dossier
 
 retry:
   attempts: 1
@@ -42,11 +43,11 @@ More examples live in [docs/EXAMPLES.md](EXAMPLES.md).
 
 ## Shape
 
-`name`
-: Stable identifier for the workflow.
+`case`
+: Stable identifier for the casefile.
 
-`goal`
-: Human-readable reason this workflow exists.
+`objective`
+: Human-readable reason this casefile exists.
 
 `agent.task`
 : Natural-language browser task.
@@ -57,32 +58,33 @@ More examples live in [docs/EXAMPLES.md](EXAMPLES.md).
 `browser`
 : Browser execution settings.
 
-`assert`
-: Machine-checkable expectations.
+`verdict.pass_when`
+: Machine-checkable conditions for a passing verdict.
 
-`artifacts`
+`receipts`
 : Evidence to save for the run.
 
 `retry`
 : Controlled retry policy.
 
-## First Assertion Types
+## First Verdict Rules
 
 - `page_contains`: visible page text must appear
 - `url_matches`: final URL must match a substring or pattern
-- `capture`: named value should be extracted into the report
+- `capture`: named value should be extracted into the dossier
 
 ## Output Contract
 
 Each run should create:
 
 ```text
-.useproof/runs/<run-id>/
-  workflow.yml
+.useproof/runs/<case>/<run-id>/
+  casefile.yml
   result.json
-  report.md
+  dossier.md
+  tape.json
   screenshots/
   traces/
 ```
 
-The JSON report is for machines. The Markdown report is for humans.
+The JSON result is for machines. The dossier is for humans.

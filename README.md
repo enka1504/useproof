@@ -5,85 +5,90 @@
 <h1 align="center">Useproof</h1>
 
 <p align="center">
-  <strong>Agentic browser checks with evidence you can inspect.</strong>
+  <strong>The flight recorder for browser agents.</strong>
 </p>
 
 <p align="center">
-  Describe a web workflow, run it with a browser agent, assert the outcome, and keep the proof.
+  Turn agentic web runs into casefiles, verdicts, and receipts your team can inspect.
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-12211F"></a>
-  <a href="pyproject.toml"><img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-0EAD93"></a>
-  <a href="docs/ROADMAP.md"><img alt="Status: product shaping" src="https://img.shields.io/badge/status-product%20shaping-F2B84B"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-080A0C"></a>
+  <a href="pyproject.toml"><img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-34D399"></a>
+  <a href="docs/ROADMAP.md"><img alt="Status: product shaping" src="https://img.shields.io/badge/status-casefile%20design-FF6B35"></a>
 </p>
 
-## What Useproof Is
+<p align="center">
+  <img src="docs/assets/useproof-banner.svg" alt="Useproof product banner">
+</p>
 
-Useproof is an open-source product project for turning AI browser agents into
-repeatable workflow checks.
+## Why It Exists
 
-The product promise is narrow on purpose:
+Browser agents are useful until someone asks the hard question:
 
-> If an agent says a workflow worked, Useproof should show the proof.
+> What exactly happened, and can we trust it?
+
+Useproof is an open-source product project for answering that question. It runs
+agentic browser journeys as **casefiles**, records the run as a **tape**,
+checks the outcome as a **verdict**, and saves the evidence as **receipts**.
 
 Useproof starts from the browser automation engine of
 [`browser-use`](https://github.com/browser-use/browser-use), then adds a product
-layer for workflow specs, assertions, artifacts, CI reports, and scheduled
-monitoring.
+layer for repeatable proof runs.
 
-## Proof Workflow
+## The Model
 
 ```text
-Describe -> Run -> Assert -> Capture -> Replay -> Monitor
+casefile -> agent run -> run tape -> verdict -> receipts -> dossier
 ```
 
 ```yaml
-name: checkout-smoke-test
-goal: Prove that the demo checkout still works.
+case: checkout-smoke-test
+objective: Prove that checkout reaches an order confirmation.
 
 agent:
   task: Log in, add the demo product to cart, and complete checkout with the test card.
   model: auto
 
-assert:
-  - page_contains: Order confirmed
-  - url_matches: /orders/
-  - capture: confirmation_number
+verdict:
+  pass_when:
+    - page_contains: Order confirmed
+    - url_matches: /orders/
+    - capture: confirmation_number
 
-artifacts:
+receipts:
   - screenshot
-  - agent_steps
+  - run_tape
   - browser_trace
-  - markdown_report
+  - dossier
 ```
 
-The output should answer the questions a team actually asks after a deploy:
+Every run should leave a dossier that answers:
 
 - What did the agent do?
 - What did it see?
-- Which assertion passed or failed?
-- What screenshot, trace, or replay proves it?
-- Can this run again in CI or on a schedule?
+- Why did Useproof pass or fail the casefile?
+- Which receipts prove the verdict?
+- Can the same casefile run again in CI or on a schedule?
 
-## Product Surface
+## Product Shape
 
-- `useproof run`: local workflow proof runner
-- `useproof check`: CI mode with deterministic exit codes
-- `.useproof/runs/`: run artifacts, reports, screenshots, and traces
-- `docs/upstream-archive/`: preserved upstream issue and PR context
-- Hosted product path: managed browser runners, scheduled monitors, team history, replay, and alerts
+- `useproof run <casefile.yml>` records a local run tape.
+- `useproof check <casefile.yml>` returns a CI verdict.
+- `.useproof/cases/` keeps casefiles.
+- `.useproof/runs/` keeps tapes, receipts, and dossiers.
+- `docs/upstream-archive/` preserves imported upstream context.
 
 The current implementation still exposes the upstream `browser_use` Python
-package while Useproof-specific product surfaces are introduced.
+package while Useproof-specific casefile surfaces are introduced.
 
 ## Repository Map
 
 - [docs/README.md](docs/README.md): documentation index
-- [docs/WORKFLOW_SPEC.md](docs/WORKFLOW_SPEC.md): proposed proof workflow format
-- [docs/EXAMPLES.md](docs/EXAMPLES.md): example proof workflows
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): target product architecture
-- [docs/BRAND.md](docs/BRAND.md): product identity and design system
+- [docs/CASEFILE_SPEC.md](docs/CASEFILE_SPEC.md): casefile format
+- [docs/EXAMPLES.md](docs/EXAMPLES.md): example casefiles
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): flight-recorder architecture
+- [docs/BRAND.md](docs/BRAND.md): visual and language system
 - [docs/ROADMAP.md](docs/ROADMAP.md): build plan
 - [docs/UPSTREAM_SNAPSHOT.md](docs/UPSTREAM_SNAPSHOT.md): imported upstream baseline
 - [NOTICE.md](NOTICE.md): attribution and license notice
@@ -91,8 +96,8 @@ package while Useproof-specific product surfaces are introduced.
 ## Development Status
 
 Useproof is in product-shaping mode. The foundation is imported and attributed;
-the next work is to build the Useproof runner, workflow spec, artifact model,
-and CI reporting around the existing browser agent engine.
+the next work is to build the casefile runner, verdict engine, receipt writer,
+and dossier writer around the existing browser agent engine.
 
 ## Upstream And License
 

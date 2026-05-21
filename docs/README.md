@@ -1,11 +1,11 @@
 # Useproof Docs
 
-Useproof is designed around one idea: agent runs need evidence.
+Useproof is designed around one idea: browser agents need a flight recorder.
 
 ## Start Here
 
 - [Product direction](PRODUCT_DIRECTION.md)
-- [Workflow spec](WORKFLOW_SPEC.md)
+- [Casefile spec](CASEFILE_SPEC.md)
 - [Examples](EXAMPLES.md)
 - [Architecture](ARCHITECTURE.md)
 - [Roadmap](ROADMAP.md)
@@ -20,4 +20,4 @@ Useproof is designed around one idea: agent runs need evidence.
 ## Current Status
 
 The browser automation engine is imported. The Useproof layer is being designed
-and built around workflow specs, assertions, artifacts, and reports.
+and built around casefiles, verdicts, receipts, run tapes, and dossiers.

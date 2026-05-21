@@ -3,32 +3,32 @@
 ## 0. Product Identity
 
 - Preserve upstream history, license, and attribution
-- Replace the public repo surface with Useproof positioning
-- Add workflow spec, architecture, brand, and contribution docs
+- Replace the public repo surface with the flight-recorder identity
+- Add casefile spec, architecture, brand, and contribution docs
 - Preserve upstream issue and PR context as an archive
 
-## 1. Proof Runner
+## 1. Recorder
 
-- Add `useproof run <workflow.yml>`
-- Parse the first workflow spec
+- Add `useproof run <casefile.yml>`
+- Parse the first casefile spec
 - Run one browser-agent task
-- Write `.useproof/runs/<run-id>/`
-- Capture screenshots, agent steps, config, and final result
+- Write `.useproof/runs/<case>/<run-id>/`
+- Capture screenshots, run tape, config, and final result
 
-## 2. Assertions
+## 2. Verdicts
 
 - Add `page_contains`
 - Add `url_matches`
 - Add `capture`
 - Add timeout and retry controls
-- Emit JSON and Markdown reports
+- Emit JSON verdicts and Markdown dossiers
 
 ## 3. CI Mode
 
-- Add `useproof check <workflow.yml>`
-- Exit non-zero on failed assertions
+- Add `useproof check <casefile.yml>`
+- Exit non-zero on failed verdicts
 - Add a GitHub Actions example
-- Upload proof artifacts predictably
+- Upload receipts predictably
 - Make PR output short enough to scan
 
 ## 4. Replay
@@ -43,7 +43,7 @@
 - Add scheduled local runs
 - Add Slack and email alert adapters
 - Design hosted runner API
-- Design team dashboard and run history
+- Design team dossier history
 
 ## 6. Productization
 

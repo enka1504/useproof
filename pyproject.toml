@@ -1,6 +1,6 @@
 [project]
 name = "useproof"
-description = "Agentic browser checks with evidence you can inspect"
+description = "The flight recorder for browser agents"
 authors = [{ name = "enka1504" }]
 version = "0.1.0"
 readme = "README.md"

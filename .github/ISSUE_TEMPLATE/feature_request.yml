@@ -7,7 +7,7 @@ body:
     id: problem
     attributes:
       label: Problem
-      description: What workflow, assertion, artifact, or report problem does this solve?
+      description: What casefile, verdict, receipt, tape, or dossier problem does this solve?
     validations:
       required: true
   - type: textarea
@@ -20,8 +20,8 @@ body:
   - type: textarea
     id: proof
     attributes:
-      label: Proof output
-      description: What evidence should the feature produce or improve?
+      label: Evidence output
+      description: What receipts or dossier sections should the feature produce or improve?
     validations:
       required: false
   - type: dropdown
@@ -29,11 +29,11 @@ body:
     attributes:
       label: Area
       options:
-        - Workflow spec
-        - Runner
-        - Assertions
-        - Artifacts
-        - Reports
+        - Casefile spec
+        - Recorder
+        - Verdicts
+        - Receipts
+        - Dossiers
         - CI
         - Monitoring
         - Documentation

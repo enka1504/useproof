@@ -26,7 +26,11 @@ jobs:
       - name: Check required product docs
         run: |
           test -f README.md
-          test -f docs/WORKFLOW_SPEC.md
+          test -f docs/CASEFILE_SPEC.md
           test -f docs/ARCHITECTURE.md
           test -f docs/BRAND.md
+          test -f docs/assets/useproof-mark.svg
+          test -f docs/assets/useproof-banner.svg
+          test -f examples/useproof/checkout.case.yml
+          test -f examples/useproof/login.case.yml
           test -f docs/UPSTREAM_SNAPSHOT.md

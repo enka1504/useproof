@@ -1,5 +1,5 @@
-name: checkout-smoke-test
-goal: Prove that the demo checkout reaches an order confirmation page.
+case: checkout-smoke-test
+objective: Prove that the demo checkout reaches an order confirmation page.
 
 agent:
   task: >
@@ -14,16 +14,17 @@ browser:
     width: 1440
     height: 1100
 
-assert:
-  - page_contains: Order confirmed
-  - url_matches: /orders/
-  - capture: confirmation_number
+verdict:
+  pass_when:
+    - page_contains: Order confirmed
+    - url_matches: /orders/
+    - capture: confirmation_number
 
-artifacts:
+receipts:
   - screenshot
-  - agent_steps
+  - run_tape
   - browser_trace
-  - markdown_report
+  - dossier
 
 retry:
   attempts: 1

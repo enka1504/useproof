@@ -1,19 +1,19 @@
 # Support
 
 Useproof is early. The best support path is a focused GitHub issue with enough
-evidence to reproduce the workflow.
+evidence to reproduce the casefile.
 
 ## Open An Issue For
 
-- A workflow that should pass but fails
-- An assertion that is missing or ambiguous
-- Artifact output that is hard to inspect
+- A casefile that should pass but fails
+- A verdict rule that is missing or ambiguous
+- Receipt output that is hard to inspect
 - CI output that is not useful
 - Documentation that does not match the product direction
 
 ## Include
 
-- Workflow file or task text
+- Casefile or task text
 - Expected result
 - Actual result
 - Screenshots or logs if available

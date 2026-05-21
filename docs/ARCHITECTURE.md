@@ -1,46 +1,52 @@
 # Architecture
 
-Useproof is a product layer around an agentic browser engine.
+Useproof is a flight-recorder layer around an agentic browser engine.
 
 ```text
-Workflow spec
-  -> Proof runner
+Casefile
+  -> Recorder
   -> Browser agent engine
-  -> Assertion engine
-  -> Artifact store
-  -> Reporters
+  -> Run tape
+  -> Verdict engine
+  -> Receipt store
+  -> Dossier writers
 ```
 
 ## Layers
 
-## Workflow Spec
+## Casefile
 
-YAML files describe a workflow, browser settings, assertions, artifacts, and
-retry policy.
+YAML files describe the objective, browser settings, verdict rules, receipts,
+and retry policy.
 
-## Proof Runner
+## Recorder
 
-The runner loads the workflow, starts the browser agent, records each step, and
-hands final state to the assertion engine.
+The recorder loads the casefile, starts the browser agent, records each step,
+and hands final state to the verdict engine.
 
 ## Browser Agent Engine
 
 The imported upstream engine drives the browser and model interaction. The
 internal package is still `browser_use` while Useproof's product layer matures.
 
-## Assertion Engine
+## Run Tape
 
-Assertions turn an agent run into an auditable pass/fail result. Early assertion
-types should be deliberately small: page text, URL matching, and captured values.
+The tape is the chronological record of what the agent tried, saw, clicked,
+typed, captured, retried, and concluded.
 
-## Artifact Store
+## Verdict Engine
 
-Artifacts make the result inspectable. Local runs write to `.useproof/runs/`.
-Hosted runs can later store artifacts privately for teams.
+Verdict rules turn an agent run into an auditable pass/fail result. Early rules
+should be deliberately small: page text, URL matching, and captured values.
 
-## Reporters
+## Receipt Store
 
-Reporters translate run output into formats for humans and machines:
+Receipts make the result inspectable. Local runs write to `.useproof/runs/`.
+Hosted runs can later store receipts privately for teams.
+
+## Dossier Writers
+
+Dossier writers translate run output into formats for humans and machines:
 
 - JSON for CI
 - Markdown for pull requests
@@ -50,4 +56,5 @@ Reporters translate run output into formats for humans and machines:
 ## Design Constraint
 
 Useproof should not hide that agents can be uncertain. The architecture should
-make uncertainty visible through assertions, retries, artifacts, and run history.
+make uncertainty visible through verdict rules, retries, receipts, and run
+history.

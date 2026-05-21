@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
   - name: Useproof documentation
     url: https://github.com/enka1504/useproof/tree/main/docs
-    about: Read the product direction, workflow spec, architecture, and roadmap.
+    about: Read the product direction, casefile spec, architecture, and roadmap.
   - name: Upstream browser-use project
     url: https://github.com/browser-use/browser-use
     about: Use upstream for issues that are only about the imported browser automation engine.

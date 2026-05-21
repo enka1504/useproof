@@ -6,39 +6,58 @@ Useproof
 
 ## Tagline
 
-Agentic browser checks with evidence you can inspect.
+The flight recorder for browser agents.
+
+## One-Line Description
+
+Useproof turns agentic browser runs into casefiles, verdicts, and receipts.
 
 ## Voice
 
-- Clear before clever
-- Proof over promise
-- Useful details, no hype
-- Calm, technical, trustworthy
+- Crisp, not cute
+- Evidence first
+- Operational, not theatrical
+- Opinionated without being loud
 
 ## Visual System
 
-Useproof should feel like a serious developer product, not a marketing page.
-The design should prioritize dense information, readable artifacts, and clear
-states.
+Useproof should feel like an evidence desk: black-box recorder, incident file,
+terminal transcript, and audit report in one place.
+
+The style should be compact, high-contrast, and receipt-driven. It should avoid
+soft SaaS gradients, mascot energy, and vague AI magic.
 
 ## Palette
 
-- Ink: `#12211F`
-- Proof green: `#0EAD93`
-- Evidence amber: `#F2B84B`
-- Surface: `#F6F8F7`
-- Failure red: `#D63B3B`
+- Recorder black: `#080A0C`
+- Paper: `#FFF7E6`
+- Signal green: `#34D399`
+- Alert orange: `#FF6B35`
+- Trace cyan: `#38BDF8`
+- Failure red: `#E11D48`
+
+## Language System
+
+- Casefile: the runnable spec
+- Run tape: the chronological agent trace
+- Verdict: the pass/fail judgment
+- Receipt: any saved evidence item
+- Dossier: the final human-readable brief
+- Chain: metadata that ties casefile, model, browser, receipts, and verdict together
 
 ## Logo
 
-The mark combines a browser window, a check path, and a proof dot. It should be
-used when the repo or docs need a small identity anchor.
+The mark is a black-box recorder with a browser frame, signal trace, and receipt
+stripe. It should feel like a system that records what happened, not a badge
+that merely says something passed.
 
 Asset:
 
 - [docs/assets/useproof-mark.svg](assets/useproof-mark.svg)
+- [docs/assets/useproof-banner.svg](assets/useproof-banner.svg)
 
 ## Product Principle
 
-Every successful run should leave evidence. Every failed run should leave enough
-context to act.
+No silent success. No useless failure.
+
+Every run leaves a dossier.

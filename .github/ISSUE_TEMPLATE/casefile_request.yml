@@ -1,26 +1,26 @@
-name: Workflow proof request
-description: Propose a workflow Useproof should be able to prove.
-labels: ["workflow", "product"]
-title: "Workflow: "
+name: Casefile request
+description: Propose a casefile Useproof should be able to run.
+labels: ["casefile", "product"]
+title: "Casefile: "
 body:
   - type: input
-    id: workflow_name
+    id: case_name
     attributes:
-      label: Workflow name
+      label: Case name
       placeholder: "checkout-smoke-test"
     validations:
       required: true
   - type: textarea
     id: goal
     attributes:
-      label: Goal
-      description: What real user journey should be proved?
+      label: Objective
+      description: What real user journey should this casefile prove?
     validations:
       required: true
   - type: textarea
-    id: assertions
+    id: verdict_rules
     attributes:
-      label: Assertions
+      label: Verdict rules
       description: What should be true at the end?
       placeholder: |
         - page contains "Order confirmed"
@@ -29,10 +29,10 @@ body:
     validations:
       required: true
   - type: textarea
-    id: artifacts
+    id: receipts
     attributes:
-      label: Needed artifacts
-      description: What evidence would make the result trustworthy?
-      placeholder: "screenshot, browser trace, step log, markdown report"
+      label: Needed receipts
+      description: What evidence would make the verdict trustworthy?
+      placeholder: "screenshot, browser trace, run tape, dossier"
     validations:
       required: false

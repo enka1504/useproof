@@ -6,5 +6,5 @@ Start with the repo-level guide:
 
 - [Contributing](../CONTRIBUTING.md)
 - [Product direction](../docs/PRODUCT_DIRECTION.md)
-- [Workflow spec](../docs/WORKFLOW_SPEC.md)
+- [Casefile spec](../docs/CASEFILE_SPEC.md)
 - [Roadmap](../docs/ROADMAP.md)

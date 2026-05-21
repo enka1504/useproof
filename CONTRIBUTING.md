@@ -1,14 +1,14 @@
 # Contributing
 
 Useproof is being shaped as a product, so contributions should connect clearly
-to proof workflows, assertions, artifacts, reports, or upstream compatibility.
+to casefiles, verdicts, receipts, dossiers, or upstream compatibility.
 
 ## Good First Areas
 
-- Workflow spec examples
-- Assertion design
-- Artifact layout
-- Markdown and JSON reports
+- Casefile examples
+- Verdict rule design
+- Receipt layout
+- Markdown and JSON dossiers
 - CI integration
 - Upstream archive improvements
 - Documentation cleanup
@@ -17,7 +17,7 @@ to proof workflows, assertions, artifacts, reports, or upstream compatibility.
 
 - Keep upstream attribution intact.
 - Avoid broad internal renames until the product layer is stable.
-- Include a short explanation of the user workflow your change improves.
+- Include a short explanation of the casefile your change improves.
 - Add or update docs when behavior or product surface changes.
 
 ## Local Checks
@@ -33,7 +33,7 @@ Use the heavier upstream test suite when touching the browser engine.
 
 Every PR should answer:
 
-- What proof workflow does this improve?
+- What casefile or verdict does this improve?
 - What changed?
 - How was it verified?
 - What remains risky or incomplete?

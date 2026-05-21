@@ -1,17 +1,17 @@
 # Examples
 
 Useproof examples are intentionally small. Each one should communicate the
-workflow, the expected proof, and the artifacts that make the result useful.
+casefile, the expected verdict, and the receipts that make the result useful.
 
-## Checkout Smoke Test
+## Checkout Casefile
 
-See [examples/useproof/checkout-smoke-test.yml](../examples/useproof/checkout-smoke-test.yml).
+See [examples/useproof/checkout.case.yml](../examples/useproof/checkout.case.yml).
 
 This proves that a purchase path reaches an order confirmation state.
 
-## Login Health Check
+## Login Casefile
 
-See [examples/useproof/login-health-check.yml](../examples/useproof/login-health-check.yml).
+See [examples/useproof/login.case.yml](../examples/useproof/login.case.yml).
 
 This proves that a user can authenticate and see the expected dashboard state.
 

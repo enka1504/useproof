@@ -1,12 +1,12 @@
-name: Bug report
-description: Report a Useproof product or workflow issue.
+name: Casefile bug report
+description: Report a Useproof casefile, verdict, or receipt issue.
 labels: ["bug", "needs-triage"]
 title: "Bug: "
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting a Useproof issue. Please focus on the workflow, expected proof, and actual proof.
+        Thanks for reporting a Useproof issue. Please focus on the casefile, expected verdict, and actual receipts.
   - type: input
     id: version
     attributes:
@@ -16,25 +16,25 @@ body:
     validations:
       required: true
   - type: textarea
-    id: workflow
+    id: casefile
     attributes:
-      label: Workflow or task
-      description: Paste the workflow YAML or the natural-language task.
+      label: Casefile or task
+      description: Paste the casefile YAML or the natural-language task.
       render: yaml
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: Expected proof
-      description: What should the run prove or capture?
+      label: Expected verdict
+      description: What should the run prove, capture, or save?
     validations:
       required: true
   - type: textarea
     id: actual
     attributes:
       label: Actual result
-      description: What happened instead? Include logs, screenshots, or artifact paths if possible.
+      description: What happened instead? Include tape, screenshots, receipts, or dossier paths if possible.
     validations:
       required: true
   - type: input
