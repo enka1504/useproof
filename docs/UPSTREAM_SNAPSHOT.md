@@ -26,6 +26,11 @@ into a new independent repository. These counts are kept here as the project
 baseline. For the original discussions, bug reports, and pull requests, use the
 upstream repository.
 
+For a file-based archive, use
+[`scripts/export_upstream_archive.py`](../scripts/export_upstream_archive.py).
+Generated archive files should live under
+[`docs/upstream-archive`](upstream-archive/README.md).
+
 ## Repository Relationship
 
 Useproof is not a GitHub fork. It is an independent repository that preserves

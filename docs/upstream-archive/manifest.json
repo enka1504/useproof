@@ -1,0 +1,20 @@
+{
+  "source_repository": "browser-use/browser-use",
+  "source_url": "https://github.com/browser-use/browser-use",
+  "product_repository": "enka1504/useproof",
+  "product_url": "https://github.com/enka1504/useproof",
+  "snapshot_date": "2026-05-21",
+  "imported_commit": "5f99e737",
+  "license_at_import": "MIT",
+  "github_state": {
+    "open_issues": 59,
+    "closed_issues": 1464,
+    "open_pull_requests": 163,
+    "closed_pull_requests": 2827
+  },
+  "archive_status": {
+    "metadata_exported": false,
+    "comments_exported": false,
+    "notes": "Run scripts/export_upstream_archive.py after gh auth login to generate issues.json and pull_requests.json."
+  }
+}

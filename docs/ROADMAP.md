@@ -6,6 +6,7 @@
 - Add Useproof README, product direction, roadmap, and attribution
 - Keep upstream sync path available through the `upstream` remote
 - Define the first workflow spec shape
+- Preserve upstream issue and pull-request metadata as a file archive
 
 ## Milestone 1: Local Proof Runner
 

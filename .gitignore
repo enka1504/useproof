@@ -29,6 +29,9 @@ dist/
 *.jsonl
 *.log
 *.bak
+!docs/upstream-archive/*.json
+!docs/upstream-archive/comments/
+!docs/upstream-archive/comments/*.json
 
 # Secrets and sensitive files
 secrets.env
